@@ -1,5 +1,5 @@
 {
-  "name": "update-server",
+  "name": "pimatic-update-server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,14 +9,17 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "JSONStream": "^1.0.6",
     "bluebird": "^2.9.13",
     "event-stream": "^3.3.1",
     "express": "^4.12.2",
+    "JSONStream": "^1.0.6",
     "lodash": "^3.4.0",
     "pm2": "^4.4.0",
     "request": "^2.79.0",
     "request-promise": "^0.4.0",
     "semver": "^5.1.0"
+  },
+  "devDependencies": {
+    "coffee-script": "^1.12.7"
   }
 }

@@ -1,18 +1,14 @@
 {
-  /**
-   * Application configuration section
-   * http://pm2.keymetrics.io/docs/usage/application-declaration/
-   */
   "apps" : [
     {
-      "name"      : "update-server",
+      "name"      : "pimatic-update-server",
       "script"    : "server.coffee",
       "env_production" : {
         "NODE_ENV": "production"
       },
       "log_date_format" : "YYYY-MM-DD HH:mm Z",
-      "out_file": "update-server.log",
-      "error_file": "update-server.log"
-    },
-  ],
+      "out_file": "pimatic-update-server.log",
+      "error_file": "pimatic-update-server.log"
+    }
+  ]
 }

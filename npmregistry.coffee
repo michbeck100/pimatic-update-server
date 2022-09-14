@@ -59,15 +59,6 @@ module.exports = {
               reject(new Error('Incomplete data from npm registry: ' + data))
     )
 
-  getPluginListCached: () ->
-    return fs.readFileAsync('cache/pluginlist.json').then( (data) =>
-      return JSON.parse(data)
-    ).catch( (err) ->
-      if(err.code == 'NOENT')
-        return []
-      throw err
-    )
-
   getPluginList: () ->
     return this.getAllPlugins().then( (allPlugins) =>
       blacklist = [
@@ -83,8 +74,16 @@ module.exports = {
           p
       )
       plugins = ["pimatic"].concat plugins
+      if (!fs.existsSync('cache'))
+        fs.mkdirSync('cache')
       return fs.writeFileAsync('cache/pluginlist.json', JSON.stringify(plugins))
         .then( () => plugins )
     )
 
+  getPluginListCached: () ->
+    if (!fs.existsSync('cache/pluginlist.json'))
+      return this.getPluginList()
+    return fs.readFileAsync('cache/pluginlist.json').then( (data) =>
+      return JSON.parse(data)
+    )
 }
