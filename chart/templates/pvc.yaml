@@ -1,0 +1,17 @@
+{{- with .Values.volumes }}
+  {{- range $key, $val := . }}
+  {{- if not $val.exists }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ $key }}
+spec:
+  accessModes:
+    - {{ $val.accessMode | default "ReadWriteOnce" | quote }}
+  resources:
+    requests:
+      storage: {{ $val.size | quote }}
+  storageClassName: local-path
+  {{- end }}
+  {{- end }}
+  {{- end }}
